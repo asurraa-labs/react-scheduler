@@ -1,7 +1,7 @@
-import * as React from "react";
-import { EVENTS } from "./model/events";
+import * as React from 'react';
+import { EVENTS } from './model/events';
 // import arSA from "date-fns/locale/ar-SA";
-import { Scheduler } from "./lib";
+import { Scheduler } from './lib';
 
 const App = () => {
   const [events, setEvents] = React.useState(EVENTS);
@@ -12,7 +12,7 @@ const App = () => {
       // loading={loading}
       // view="month"
       events={events}
-      selectedDate={new Date("2021/5/1")}
+      selectedDate={new Date('2021/5/1')}
       // height={800}
       // week={{
       //   weekDays: [0, 1, 2, 3, 4, 5],
@@ -46,16 +46,16 @@ const App = () => {
       //   endHour: 18,
       //   step: 20,
       // }}
-      // remoteEvents={async (query) => {
-      //   await new Promise((res, rej) => {
-      //     setTimeout(() => {
-      //       // setEvents(EVENTS);
-      //       res("");
-      //     }, 1000);
-      //   });
-      //   // return null;
-      //   // return EVENTS;
-      // }}
+      remoteEvents={async (query) => {
+        await new Promise((res, rej) => {
+          setTimeout(() => {
+            setEvents(EVENTS);
+            res('');
+          }, 1000);
+        });
+        // return null;
+        return EVENTS;
+      }}
       // resources={[
       // {
       //   admin_id: 1,
@@ -87,17 +87,17 @@ const App = () => {
       //   },
       // ]}
       // resourceFields={{
-      //   idField: "admin_id",
-      //   textField: "title",
-      //   subTextField: "mobile",
-      //   avatarField: "title",
-      //   colorField: "color",
+      //   idField: 'admin_id',
+      //   textField: 'title',
+      //   subTextField: 'mobile',
+      //   avatarField: 'title',
+      //   colorField: 'color',
       // }}
-      // resourceViewMode="tabs"
-      // recourseHeaderComponent={(recourse) => {
-      //   console.log(recourse);
-      //   return <div>HAHA</div>;
-      // }}
+      resourceViewMode="tabs"
+      recourseHeaderComponent={(recourse) => {
+        console.log(recourse);
+        return <div>HAHA</div>;
+      }}
       // fields={[
       //   {
       //     name: "description",
@@ -175,7 +175,9 @@ const App = () => {
       //   //   </div>
       //   // );
       // }}
-      // viewerTitleComponent={(event) => <>{event.title}</>}
+      showDelete={false}
+      showEdit={false}
+      viewerTitleComponent={(event) => <>{event.title}</>}
       // direction="rtl"
       // locale={arSA}
       // onEventDrop={async (time, updated) => {
