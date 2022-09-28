@@ -91,13 +91,13 @@ const App = () => {
       //   textField: 'title',
       //   subTextField: 'mobile',
       //   avatarField: 'title',
-      //   colorField: 'color',
+      //   colorField: '#08c5bd',
       // }}
-      resourceViewMode="tabs"
-      recourseHeaderComponent={(recourse) => {
-        console.log(recourse);
-        return <div>HAHA</div>;
-      }}
+      // resourceViewMode="tabs"
+      // recourseHeaderComponent={(recourse) => {
+      //   console.log(recourse);
+      //   return <div>HAHA</div>;
+      // }}
       // fields={[
       //   {
       //     name: "description",
@@ -158,23 +158,23 @@ const App = () => {
       //   });
       // }}
       // customEditor={(scheduler) => <CustomEditor scheduler={scheduler} />}
-      // viewerExtraComponent={(fields, e) => {
-      //   return (
-      //     <div>
-      //       {Array.from("a".repeat(50)).map((a, i) => (
-      //         <div key={i}>Extra</div>
-      //       ))}
-      //     </div>
-      //   );
-      //   // console.log(fields, e);
-      //   // return (
-      //   //   <div>
-      //   //     {fields.map((a, i) => (
-      //   //       <div key={i}>{e.description}</div>
-      //   //     ))}
-      //   //   </div>
-      //   // );
-      // }}
+      viewerExtraComponent={(fields, e) => {
+        // return (
+        //   <div>
+        //     {Array.from('a'.repeat(50)).map((a, i) => (
+        //       <div key={i}>Extra</div>
+        //     ))}
+        //   </div>
+        // );
+        console.log(fields, e);
+        return (
+          <div>
+            {fields.map((a, i) => (
+              <div key={i}>{e.description}</div>
+            ))}
+          </div>
+        );
+      }}
       showDelete={false}
       showEdit={false}
       viewerTitleComponent={(event) => <>{event.title}</>}

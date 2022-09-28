@@ -1,5 +1,5 @@
-import { useEffect, useCallback, Fragment } from "react";
-import { Typography } from "@mui/material";
+import { useEffect, useCallback, Fragment } from 'react';
+import { Typography } from '@mui/material';
 import {
   format,
   eachMinuteOfInterval,
@@ -15,26 +15,26 @@ import {
   endOfDay,
   addDays,
   addMinutes,
-} from "date-fns";
-import TodayTypo from "../components/common/TodayTypo";
-import EventItem from "../components/events/EventItem";
-import { useAppState } from "../hooks/useAppState";
+} from 'date-fns';
+import TodayTypo from '../components/common/TodayTypo';
+import EventItem from '../components/events/EventItem';
+import { useAppState } from '../hooks/useAppState';
 import {
   CellRenderedProps,
   DayHours,
   DefaultRecourse,
   ProcessedEvent,
-} from "../types";
+} from '../types';
 import {
   calcCellHeight,
   calcMinuteHeight,
   getResourcedEvents,
-} from "../helpers/generals";
-import { WithResources } from "../components/common/WithResources";
-import { Cell } from "../components/common/Cell";
-import TodayEvents from "../components/events/TodayEvents";
-import { TableGrid } from "../styles/styles";
-import { MULTI_DAY_EVENT_HEIGHT } from "../helpers/constants";
+} from '../helpers/generals';
+import { WithResources } from '../components/common/WithResources';
+import { Cell } from '../components/common/Cell';
+import TodayEvents from '../components/events/TodayEvents';
+import { TableGrid } from '../styles/styles';
+import { MULTI_DAY_EVENT_HEIGHT } from '../helpers/constants';
 
 export interface DayProps {
   startHour: DayHours;
@@ -79,10 +79,11 @@ const Day = () => {
       triggerLoading(true);
       const start = addDays(START_TIME, -1);
       const end = addDays(END_TIME, 1);
+      console.log('start', start);
       const query = `?start=${start}&end=${end}`;
       const events = await remoteEvents!(query);
       if (events && events?.length) {
-        handleState(events, "events");
+        handleState(events, 'events');
       }
     } catch (error) {
       throw error;
@@ -123,7 +124,7 @@ const Day = () => {
               className="rs__multi_day"
               style={{
                 top: i * MULTI_DAY_EVENT_HEIGHT,
-                width: "100%",
+                width: '100%',
               }}
             >
               <EventItem
@@ -166,7 +167,7 @@ const Day = () => {
         <span className="rs__cell"></span>
         <span
           className={`rs__cell rs__header ${
-            isToday(selectedDate) ? "rs__today_cell" : ""
+            isToday(selectedDate) ? 'rs__today_cell' : ''
           }`}
           style={{ height: headerHeight }}
         >
@@ -177,12 +178,12 @@ const Day = () => {
         {/* Body */}
         {hours.map((h, i) => {
           const start = new Date(
-            `${format(selectedDate, "yyyy/MM/dd")} ${format(h, "hh:mm a")}`
+            `${format(selectedDate, 'yyyy/MM/dd')} ${format(h, 'hh:mm a')}`
           );
           const end = new Date(
-            `${format(selectedDate, "yyyy/MM/dd")} ${format(
+            `${format(selectedDate, 'yyyy/MM/dd')} ${format(
               addMinutes(h, step),
-              "hh:mm a"
+              'hh:mm a'
             )}`
           );
           const field = resourceFields.idField;
@@ -195,13 +196,13 @@ const Day = () => {
                 style={{ height: CELL_HEIGHT }}
               >
                 <Typography variant="caption">
-                  {format(h, "hh:mm a", { locale: locale })}
+                  {format(h, 'hh:mm a', { locale: locale })}
                 </Typography>
               </span>
 
               <span
                 className={`rs__cell ${
-                  isToday(selectedDate) ? "rs__today_cell" : ""
+                  isToday(selectedDate) ? 'rs__today_cell' : ''
                 }`}
               >
                 {/* Events of this day - run once on the top hour column */}
